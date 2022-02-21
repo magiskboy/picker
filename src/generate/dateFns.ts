@@ -23,8 +23,10 @@ import {
   format as formatDate,
   parse as parseDate,
 } from 'date-fns';
-import * as Locale from 'date-fns/locale';
+import { enUS, vi } from 'date-fns/locale';
 import type { GenerateConfig } from '.';
+
+const Locale = { enUS, vi };
 
 const dealLocal = (str: string) => {
   return str.replace(/_/g, '');
@@ -42,15 +44,15 @@ const localeParse = (format: string) => {
 const generateConfig: GenerateConfig<Date> = {
   // get
   getNow: () => new Date(),
-  getFixedDate: string => new Date(string),
-  getEndDate: date => endOfMonth(date),
-  getWeekDay: date => getDay(date),
-  getYear: date => getYear(date),
-  getMonth: date => getMonth(date),
-  getDate: date => getDate(date),
-  getHour: date => getHours(date),
-  getMinute: date => getMinutes(date),
-  getSecond: date => getSeconds(date),
+  getFixedDate: (string) => new Date(string),
+  getEndDate: (date) => endOfMonth(date),
+  getWeekDay: (date) => getDay(date),
+  getYear: (date) => getYear(date),
+  getMonth: (date) => getMonth(date),
+  getDate: (date) => getDate(date),
+  getHour: (date) => getHours(date),
+  getMinute: (date) => getMinutes(date),
+  getSecond: (date) => getSeconds(date),
 
   // set
   addYear: (date, diff) => addYears(date, diff),
@@ -65,10 +67,10 @@ const generateConfig: GenerateConfig<Date> = {
 
   // Compare
   isAfter: (date1, date2) => isAfter(date1, date2),
-  isValidate: date => isValid(date),
+  isValidate: (date) => isValid(date),
 
   locale: {
-    getWeekFirstDay: locale => {
+    getWeekFirstDay: (locale) => {
       const clone = Locale[dealLocal(locale)];
       return clone.options.weekStartsOn;
     },
@@ -78,11 +80,11 @@ const generateConfig: GenerateConfig<Date> = {
     getWeek: (locale, date) => {
       return getWeek(date, { locale: Locale[dealLocal(locale)] });
     },
-    getShortWeekDays: locale => {
+    getShortWeekDays: (locale) => {
       const clone = Locale[dealLocal(locale)];
       return Array.from({ length: 7 }).map((_, i) => clone.localize.day(i, { width: 'short' }));
     },
-    getShortMonths: locale => {
+    getShortMonths: (locale) => {
       const clone = Locale[dealLocal(locale)];
       return Array.from({ length: 12 }).map((_, i) =>
         clone.localize.month(i, { width: 'abbreviated' }),
