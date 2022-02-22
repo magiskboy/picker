@@ -1,6 +1,6 @@
 {
-  "name": "@teko/rc-picker",
-  "version": "2.6.6",
+  "name": "rc-picker-minimal",
+  "version": "2.6.5",
   "description": "React date & time picker",
   "keywords": [
     "react",
