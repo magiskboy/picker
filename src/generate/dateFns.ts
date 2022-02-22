@@ -23,7 +23,8 @@ import {
   format as formatDate,
   parse as parseDate,
 } from 'date-fns';
-import { enUS, vi } from 'date-fns/locale';
+import vi from 'date-fns/esm/locale/vi';
+import enUS from 'date-fns/esm/locale/en-US';
 import type { GenerateConfig } from '.';
 
 const Locale = { enUS, vi };
