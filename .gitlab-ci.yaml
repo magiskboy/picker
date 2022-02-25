@@ -1,0 +1,17 @@
+image: node:16
+
+stages:
+  - setup
+  - test
+
+setup:
+  stage: setup
+  script:
+    - npm install
+
+test:
+  stage: test
+  needs: [setup]
+  script:
+    - npm run lint
+    - npm test -- --coverage
