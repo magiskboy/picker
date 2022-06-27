@@ -96,5 +96,6 @@
     "lib": "lib",
     "test": "tests"
   },
-  "author": "Nguyen Khac Thanh"
+  "author": "Nguyen Khac Thanh",
+  "sideEffects": false
 }
